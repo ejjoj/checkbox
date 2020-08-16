@@ -31,18 +31,6 @@ class TicketShop extends React.Component {
     });
   }
 
-  // displayMessage = () => {
-  //   if (this.state.isFormSubmitted) {
-  //     if (this.state.isConfirmed) {
-  //       return <ValidationMessage txt='Możesz obejrzeć film.'/>;
-  //     } else {
-  //       return <ValidationMessage txt='Nie możesz obejrzeć tego filmu, jeśli masz mniej niż 16 lat.'/>;
-  //     }
-  //   } else {
-  //     return null;
-  //   }
-  // }
-
   handleFormSubmit = (e) => {
     e.preventDefault();
     if (!this.state.isFormSubmitted) {
