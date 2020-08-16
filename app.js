@@ -1,5 +1,21 @@
-const ValidationMessage = (props) => <p>{props.txt}</p>;
+const displayMessage = (isConfirmed, isFormSubmitted) => {
+  if (isFormSubmitted) {
+    if (isConfirmed) {
+      return <ValidationMessage txt='Możesz obejrzeć film.'/>;
+    } else {
+      return <ValidationMessage txt='Nie możesz obejrzeć tego filmu, jeśli masz mniej niż 16 lat.'/>;
+    }
+  } else {
+    return null;
+  }
+}
 
+const ValidationMessage = (props) => {
+  const {txt} = props
+  return (
+    <p>{txt}</p>
+  );
+}
 
 class TicketShop extends React.Component {
 
@@ -15,17 +31,17 @@ class TicketShop extends React.Component {
     });
   }
 
-  displayMessage = () => {
-    if (this.state.isFormSubmitted) {
-      if (this.state.isConfirmed) {
-        return <ValidationMessage txt='Możesz obejrzeć film.'/>;
-      } else {
-        return <ValidationMessage txt='Nie możesz obejrzeć tego filmu, jeśli masz mniej niż 16 lat.'/>;
-      }
-    } else {
-      return null;
-    }
-  }
+  // displayMessage = () => {
+  //   if (this.state.isFormSubmitted) {
+  //     if (this.state.isConfirmed) {
+  //       return <ValidationMessage txt='Możesz obejrzeć film.'/>;
+  //     } else {
+  //       return <ValidationMessage txt='Nie możesz obejrzeć tego filmu, jeśli masz mniej niż 16 lat.'/>;
+  //     }
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   handleFormSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +53,8 @@ class TicketShop extends React.Component {
   }
 
   render() {
+    const {isConfirmed, isFormSubmitted} = this.state;
+
     return(
       <>
         <form onSubmit={this.handleFormSubmit}>
@@ -46,7 +64,7 @@ class TicketShop extends React.Component {
           <br />
           <br />
           <button>Kup bilet</button>
-          {this.displayMessage()}
+          {displayMessage(isConfirmed, isFormSubmitted)}
         </form>
       </>
     )
